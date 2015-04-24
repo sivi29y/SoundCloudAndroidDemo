@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/main"
+    android:background="@drawable/rowbackground"
+    >
+
+    <RelativeLayout
+        android:background="@color/gray"
+        android:id="@+id/RelativeLayout01" android:layout_width="wrap_content" android:layout_height="wrap_content">
+
+        <SearchView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:color="@color/black"
+            android:id="@+id/searchView2"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:maxWidth="300dp"
+             />
+
+
+
+        <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:id="@+id/track_button"  android:text="@string/track_button_label"
+            android:layout_alignParentRight="true"
+            ></Button>
+	</RelativeLayout>
+	
+<ListView android:id="@+id/track_list"
+    android:background="@color/white"
+    android:choiceMode="singleChoice"
+    android:fadingEdgeLength="0dp"
+    android:scrollbarSize="4dp"
+    android:layout_height="wrap_content"
+    android:scrollbarThumbHorizontal="@drawable/thumb1"
+    android:scrollbarThumbVertical="@drawable/thumb1"
+    android:smoothScrollbar="false"
+    android:layout_width="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_below="@id/RelativeLayout01"
+     android:focusable="true" android:focusableInTouchMode="true" android:clickable="true"
+    ></ListView>
+
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:padding="8dp"
+       android:layout_alignParentBottom="true">
+
+
+
+
+    <ImageButton
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:src ="@drawable/large_tiles"
+        android:background="@color/transparent"
+        android:id="@+id/button"
+        android:layout_gravity="right"
+        android:layout_alignParentRight="true"
+        android:baselineAlignBottom="true"
+        android:layout_marginRight="8dp"
+        android:layout_alignParentTop="true" />
+
+   </RelativeLayout>
+
+
+</RelativeLayout>
