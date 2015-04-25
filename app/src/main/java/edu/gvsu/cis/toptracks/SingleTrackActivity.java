@@ -122,7 +122,6 @@ public class SingleTrackActivity extends Activity implements MediaPlayer.OnPrepa
         try {
 
             mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-
             //Log.d(TAG, path);
             mediaPlayer.setDataSource(trackUriString);
             mediaPlayer.prepare();
@@ -142,12 +141,12 @@ public class SingleTrackActivity extends Activity implements MediaPlayer.OnPrepa
         mediaController.hide();
         //MediaPlayer mediaPlayer;
         mediaPlayer.pause();
-        mediaPlayer.stop();
+        //mediaPlayer.stop();
         mediaPlayer.release();
        // mediaPlayer = null;
 
        // trackUriString = null;
-   
+
 
     }
 
