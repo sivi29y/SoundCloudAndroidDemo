@@ -52,38 +52,36 @@ public class SingleTrackActivity extends Activity implements MediaPlayer.OnPrepa
     ImageButton img;
     public static final int DIALOG_DOWNLOAD_PROGRESS = 0;
     private ProgressDialog mProgressDialog;
-
     private MediaController mediaController;
     DownloadImgFileAsync d = new DownloadImgFileAsync();
-
     private Handler handler = new Handler();
-
     private ImageView Artwork;
     private String trackUriString;
     private Intent intent;
     private MediaPlayer mediaPlayer;
     private Integer index = 0;
-
-
-
-
     Map<Integer,String> songLib = new HashMap<Integer,String>();
     private String path;
+    private String trackTitle;
+    private TextView Title;
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.track);
 
+        Title = (TextView) findViewById(R.id.now_playing_text);
+        Title.setPadding(30,30,30,30);
+        Title.setText(trackTitle);
 
-        index +=1;
-        path = Environment.getExternalStorageDirectory().getPath()+"/Toptracks/song"+ index.toString() +".mp3";
+
+
+//        index +=1;
+//        path = Environment.getExternalStorageDirectory().getPath()+"/Toptracks/song"+ index.toString() +".mp3";
         //streaming audio on other thread
         //startDownload(trackUriString);
-
 
 
         intent = getIntent();
@@ -92,17 +90,21 @@ public class SingleTrackActivity extends Activity implements MediaPlayer.OnPrepa
         imgUriString.replace("-large", "-t500x500");
         startDownloadImg(imgUriString);
         //DownloadImgFileAsync.THREAD_POOL_EXECUTOR.execute();
-        //startDownloadImg(imgUriString);
 
 
+        trackTitle = intent.getStringExtra("title");
         trackUriString = intent.getStringExtra("stream_url");
-        String trackTitle = intent.getStringExtra("title");
+
         String auth = "?client_id=d652006c469530a4a7d6184b18e16c81";
         trackUriString += auth;
         Log.d(TAG, trackUriString);
         //img download
         Artwork = (ImageView) findViewById(R.id.image);
-        ((TextView) findViewById(R.id.now_playing_text)).setText(trackTitle);
+
+        mediaPlayer = new MediaPlayer();
+        mediaPlayer.setOnPreparedListener(this);
+        mediaPlayer.setLooping(false);
+
 
 
     }
@@ -111,15 +113,6 @@ public class SingleTrackActivity extends Activity implements MediaPlayer.OnPrepa
     public void onResume() {
         super.onResume();
 
-
-
-
-
-
-
-        mediaPlayer = new MediaPlayer();
-        mediaPlayer.setOnPreparedListener(this);
-        mediaPlayer.setLooping(false);
         mediaController = new MediaController(this);
 
         songLib.put(index,path);
@@ -151,24 +144,24 @@ public class SingleTrackActivity extends Activity implements MediaPlayer.OnPrepa
         mediaPlayer.pause();
         mediaPlayer.stop();
         mediaPlayer.release();
-        mediaPlayer = null;
+       // mediaPlayer = null;
 
-        trackUriString = null;
-        this.finish();
-
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        mediaController.hide();
-       if (mediaPlayer!=null && mediaPlayer.isPlaying()) {
-           mediaPlayer.stop();
-           mediaPlayer.release();
-       }
-        trackUriString = null;
+       // trackUriString = null;
+   
 
     }
+
+//    @Override
+//    public void onStop() {
+//        super.onStop();
+//        mediaController.hide();
+//       if (mediaPlayer!=null && mediaPlayer.isPlaying()) {
+//           mediaPlayer.stop();
+//           mediaPlayer.release();
+//       }
+//        trackUriString = null;
+//
+//    }
 
 
 
